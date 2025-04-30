@@ -93,30 +93,31 @@
     .result {
       margin-top: 30px;
       font-size: 1.5rem;
-      color: #4CAF50;
     }
 
-    .error {
-      color: red;
-      font-size: 1.2rem;
+    .name {
+      color: black; /* Nama siswa selalu hitam */
+    }
+
+    .status-lulus {
+      color: blue; /* Status "Lulus" berwarna biru */
+    }
+
+    .status-tidak-lulus {
+      color: red; /* Status "Tidak Lulus" berwarna merah */
     }
 
     /* Informasi Tambahan */
-    .info {
+    .info-lulus {
       margin-top: 20px;
       font-size: 1rem;
       color: #555;
     }
 
-    /* Tampilan Nama dan Status */
-    .name {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
-
-    .status {
-      font-size: 1.5rem;
-      color: #4CAF50;
+    .info-tidak-lulus {
+      margin-top: 20px;
+      font-size: 1rem;
+      color: red; /* Pesan tambahan untuk tidak lulus berwarna merah */
     }
 
     /* Tombol Cek NISN Lainnya */
@@ -167,7 +168,7 @@
     <img src="logo-sekolah.png" alt="Logo SMA Negeri 6 Sigi" class="logo">
 
     <div id="result" class="result"></div>
-    <div id="additional-info" class="info"></div>
+    <div id="additional-info"></div>
 
     <!-- Tombol Cek NISN Lainnya -->
     <button class="reset-btn" onclick="resetForm()">Cek NISN Lainnya</button>
@@ -197,7 +198,7 @@
       // Reset pesan sebelumnya
       resultDiv.innerHTML = ""; // Gunakan innerHTML untuk memungkinkan penambahan elemen baru
       errorDiv.textContent = "";
-      infoDiv.textContent = "";
+      infoDiv.innerHTML = "";
 
       if (nisn === "") {
         errorDiv.textContent = "NISN tidak boleh kosong!";
@@ -214,13 +215,24 @@
         // Tampilkan nama dan status secara terpisah
         resultDiv.innerHTML = `
           <p class="name">Nama: ${student.name}</p>
-          <p class="status">Status: ${student.status}</p>
+          <p class="${student.status === 'Lulus' ? 'status-lulus' : 'status-tidak-lulus'}">
+            Status: ${student.status}
+          </p>
         `;
 
-        // Tambahkan informasi tambahan jika lulus
+        // Tambahkan informasi tambahan
         if (student.status === "Lulus") {
-          infoDiv.textContent =
-            "Silahkan ambil Surat Keterangan Lulus di Ruang Tata Usaha SMA Negeri 6 Sigi dengan berpakaian Rapi dan Sopan.";
+          infoDiv.innerHTML = `
+            <p class="info-lulus">
+              Silahkan ambil Surat Keterangan Lulus di Ruang Tata Usaha SMA Negeri 6 Sigi dengan berpakaian Rapi dan Sopan.
+            </p>
+          `;
+        } else {
+          infoDiv.innerHTML = `
+            <p class="info-tidak-lulus">
+              Segera menemui pihak sekolah untuk keterangan lebih lanjut.
+            </p>
+          `;
         }
       } else {
         errorDiv.textContent = "NISN tidak ditemukan. Silakan coba lagi.";
@@ -238,7 +250,7 @@
       nisnInput.value = "";
       resultDiv.innerHTML = "";
       errorDiv.textContent = "";
-      infoDiv.textContent = "";
+      infoDiv.innerHTML = "";
 
       // Kembali ke halaman input NISN
       document.getElementById("result-page").style.display = "none";
