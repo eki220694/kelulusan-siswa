@@ -29,7 +29,7 @@
 
     p {
       font-size: 1.2rem;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
 
     .container {
@@ -47,6 +47,23 @@
       margin-bottom: 20px;
     }
 
+    /* Tombol Login */
+    .login-btn {
+      background: #4CAF50;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .login-btn:hover {
+      background: #45a049;
+    }
+
+    /* Input NISN */
     input[type="text"] {
       width: 100%;
       padding: 15px;
@@ -56,6 +73,7 @@
       font-size: 1rem;
     }
 
+    /* Tombol Cek Hasil */
     button {
       background: #4CAF50;
       color: white;
@@ -71,6 +89,7 @@
       background: #45a049;
     }
 
+    /* Hasil Kelulusan */
     .result {
       margin-top: 30px;
       font-size: 1.5rem;
@@ -81,21 +100,40 @@
       color: red;
       font-size: 1.2rem;
     }
+
+    /* Informasi Tambahan */
+    .info {
+      margin-top: 20px;
+      font-size: 1rem;
+      color: #555;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Tambahkan logo di sini -->
+  <!-- Halaman Awal -->
+  <div id="welcome-page" class="container">
     <img src="logo-sekolah.png" alt="Logo SMA Negeri 6 Sigi" class="logo">
 
-    <h1>Pengumuman Kelulusan SMA Negeri 6 Sigi</h1>
-    <p>Silakan masukkan NISN Anda untuk mengetahui hasil kelulusan:</p>
+    <h1>Selamat Datang di Pengumuman Kelulusan</h1>
+    <p>Assalamualaikum Warahmatullahi Wabarakatuh,</p>
+    <p>Kami ucapkan selamat kepada seluruh siswa/i yang telah menyelesaikan jenjang pendidikan selama 3 tahun di SMA Negeri 6 Sigi. Semoga ilmu yang didapatkan bermanfaat bagi masa depan.</p>
+
+    <button class="login-btn" onclick="showLoginPage()">LOGIN</button>
+  </div>
+
+  <!-- Halaman Login -->
+  <div id="login-page" class="container" style="display: none;">
+    <img src="logo-sekolah.png" alt="Logo SMA Negeri 6 Sigi" class="logo">
+
+    <h1>Pengumuman Kelulusan</h1>
+    <p>Silakan masukkan NISN Anda untuk melihat hasil kelulusan:</p>
 
     <input type="text" id="nisnInput" placeholder="Masukkan NISN Anda" />
     <button onclick="checkResult()">Cek Hasil</button>
 
     <div id="result" class="result"></div>
     <div id="error" class="error"></div>
+    <div id="additional-info" class="info"></div>
   </div>
 
   <script>
@@ -106,14 +144,23 @@
       "1122334455": { name: "Citra", status: "Tidak Lulus" },
     };
 
+    // Fungsi untuk menampilkan halaman login
+    function showLoginPage() {
+      document.getElementById("welcome-page").style.display = "none";
+      document.getElementById("login-page").style.display = "block";
+    }
+
+    // Fungsi untuk memeriksa hasil kelulusan
     function checkResult() {
       const nisn = document.getElementById("nisnInput").value.trim();
       const resultDiv = document.getElementById("result");
       const errorDiv = document.getElementById("error");
+      const infoDiv = document.getElementById("additional-info");
 
       // Reset pesan sebelumnya
       resultDiv.textContent = "";
       errorDiv.textContent = "";
+      infoDiv.textContent = "";
 
       if (nisn === "") {
         errorDiv.textContent = "NISN tidak boleh kosong!";
@@ -123,8 +170,14 @@
       // Cari data siswa berdasarkan NISN
       const student = students[nisn];
       if (student) {
-        resultDiv.textContent = `Selamat, ${student.name}! Anda dinyatakan ${student.status}.`;
+        resultDiv.textContent = `Nama: ${student.name}\nStatus: ${student.status}`;
         resultDiv.style.color = student.status === "Lulus" ? "#4CAF50" : "red";
+
+        // Tambahkan informasi tambahan jika lulus
+        if (student.status === "Lulus") {
+          infoDiv.textContent =
+            "Silahkan ambil Surat Keterangan Lulus di Ruang Administrasi dengan berpakaian Rapi dan Sopan.";
+        }
       } else {
         errorDiv.textContent = "NISN tidak ditemukan. Silakan coba lagi.";
       }
