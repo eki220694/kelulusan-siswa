@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pengumuman Kelulusan Siswa</title>
+  <style>
+    /* Reset default margin dan padding */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f4f4f9;
+      color: #333;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #4CAF50;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    button {
+      background: #4CAF50;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    .result {
+      margin-top: 30px;
+      font-size: 1.5rem;
+      color: #4CAF50;
+    }
+
+    .error {
+      color: red;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pengumuman Kelulusan Siswa</h1>
+    <p>Silakan masukkan NISN Anda untuk mengetahui hasil kelulusan:</p>
+
+    <input type="text" id="nisnInput" placeholder="Masukkan NISN Anda" />
+    <button onclick="checkResult()">Cek Hasil</button>
+
+    <div id="result" class="result"></div>
+    <div id="error" class="error"></div>
+  </div>
+
+  <script>
+    // Data dummy untuk hasil kelulusan
+    const students = {
+      "1234567890": { name: "Andi", status: "Lulus" },
+      "0987654321": { name: "Budi", status: "Lulus" },
+      "1122334455": { name: "Citra", status: "Tidak Lulus" },
+    };
+
+    function checkResult() {
+      const nisn = document.getElementById("nisnInput").value.trim();
+      const resultDiv = document.getElementById("result");
+      const errorDiv = document.getElementById("error");
+
+      // Reset pesan sebelumnya
+      resultDiv.textContent = "";
+      errorDiv.textContent = "";
+
+      if (nisn === "") {
+        errorDiv.textContent = "NISN tidak boleh kosong!";
+        return;
+      }
+
+      // Cari data siswa berdasarkan NISN
+      const student = students[nisn];
+      if (student) {
+        resultDiv.textContent = `Selamat, ${student.name}! Anda dinyatakan ${student.status}.`;
+        resultDiv.style.color = student.status === "Lulus" ? "#4CAF50" : "red";
+      } else {
+        errorDiv.textContent = "NISN tidak ditemukan. Silakan coba lagi.";
+      }
+    }
+  </script>
+</body>
+</html>
