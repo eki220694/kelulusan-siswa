@@ -107,6 +107,34 @@
       font-size: 1rem;
       color: #555;
     }
+
+    /* Tampilan Nama dan Status */
+    .name {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .status {
+      font-size: 1.5rem;
+      color: #4CAF50;
+    }
+
+    /* Tombol Cek NISN Lainnya */
+    .reset-btn {
+      margin-top: 20px;
+      background: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .reset-btn:hover {
+      background: #45a049;
+    }
   </style>
 </head>
 <body>
@@ -121,8 +149,8 @@
     <button class="login-btn" onclick="showLoginPage()">LOGIN</button>
   </div>
 
-  <!-- Halaman Login -->
-  <div id="login-page" class="container" style="display: none;">
+  <!-- Halaman Input NISN -->
+  <div id="input-page" class="container" style="display: none;">
     <img src="logo-sekolah.png" alt="Logo SMA Negeri 6 Sigi" class="logo">
 
     <h1>Pengumuman Kelulusan</h1>
@@ -131,9 +159,18 @@
     <input type="text" id="nisnInput" placeholder="Masukkan NISN Anda" />
     <button onclick="checkResult()">Cek Hasil</button>
 
-    <div id="result" class="result"></div>
     <div id="error" class="error"></div>
+  </div>
+
+  <!-- Halaman Hasil Kelulusan -->
+  <div id="result-page" class="container" style="display: none;">
+    <img src="logo-sekolah.png" alt="Logo SMA Negeri 6 Sigi" class="logo">
+
+    <div id="result" class="result"></div>
     <div id="additional-info" class="info"></div>
+
+    <!-- Tombol Cek NISN Lainnya -->
+    <button class="reset-btn" onclick="resetForm()">Cek NISN Lainnya</button>
   </div>
 
   <script>
@@ -147,7 +184,7 @@
     // Fungsi untuk menampilkan halaman login
     function showLoginPage() {
       document.getElementById("welcome-page").style.display = "none";
-      document.getElementById("login-page").style.display = "block";
+      document.getElementById("input-page").style.display = "block";
     }
 
     // Fungsi untuk memeriksa hasil kelulusan
@@ -158,7 +195,7 @@
       const infoDiv = document.getElementById("additional-info");
 
       // Reset pesan sebelumnya
-      resultDiv.textContent = "";
+      resultDiv.innerHTML = ""; // Gunakan innerHTML untuk memungkinkan penambahan elemen baru
       errorDiv.textContent = "";
       infoDiv.textContent = "";
 
@@ -170,17 +207,42 @@
       // Cari data siswa berdasarkan NISN
       const student = students[nisn];
       if (student) {
-        resultDiv.textContent = `Nama: ${student.name}\nStatus: ${student.status}`;
-        resultDiv.style.color = student.status === "Lulus" ? "#4CAF50" : "red";
+        // Pindah ke halaman hasil kelulusan
+        document.getElementById("input-page").style.display = "none";
+        document.getElementById("result-page").style.display = "block";
+
+        // Tampilkan nama dan status secara terpisah
+        resultDiv.innerHTML = `
+          <p class="name">Nama: ${student.name}</p>
+          <p class="status">Status: ${student.status}</p>
+        `;
 
         // Tambahkan informasi tambahan jika lulus
         if (student.status === "Lulus") {
           infoDiv.textContent =
-            "Silahkan ambil Surat Keterangan Lulus di Ruang Administrasi dengan berpakaian Rapi dan Sopan.";
+            "Silahkan ambil Surat Keterangan Lulus di Ruang Tata Usaha SMA Negeri 6 Sigi dengan berpakaian Rapi dan Sopan.";
         }
       } else {
         errorDiv.textContent = "NISN tidak ditemukan. Silakan coba lagi.";
       }
+    }
+
+    // Fungsi untuk mereset form
+    function resetForm() {
+      const nisnInput = document.getElementById("nisnInput");
+      const resultDiv = document.getElementById("result");
+      const errorDiv = document.getElementById("error");
+      const infoDiv = document.getElementById("additional-info");
+
+      // Kosongkan input NISN dan hasil kelulusan
+      nisnInput.value = "";
+      resultDiv.innerHTML = "";
+      errorDiv.textContent = "";
+      infoDiv.textContent = "";
+
+      // Kembali ke halaman input NISN
+      document.getElementById("result-page").style.display = "none";
+      document.getElementById("input-page").style.display = "block";
     }
   </script>
 </body>
