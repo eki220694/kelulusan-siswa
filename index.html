@@ -56,22 +56,10 @@
       font-size: 1rem;
       color: #555;
       margin-bottom: 20px;
-    }
-
-    /* Input NISN */
-    input[type="text"] {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border: 2px solid #007bff;
-      border-radius: 8px;
-      font-size: 1rem;
-      transition: border-color 0.3s ease;
-    }
-
-    input[type="text"]:focus {
-      border-color: #0056b3;
-      outline: none;
+      max-width: 300px; /* Membatasi lebar teks agar tidak terlalu panjang */
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
     }
 
     /* Tombol */
@@ -85,50 +73,12 @@
       font-weight: 500;
       cursor: pointer;
       transition: background 0.3s ease, transform 0.3s ease;
+      margin-bottom: 20px; /* Menambahkan jarak ke bawah */
     }
 
     button:hover {
       background: #0056b3;
       transform: scale(1.05);
-    }
-
-    /* Kotak Hasil */
-    .result-container {
-      margin-top: 20px;
-      padding: 15px;
-      border-radius: 8px;
-    }
-
-    .result-lulus {
-      background: #2ecc71; /* Hijau muda */
-      color: white;
-    }
-
-    .result-tidak-lulus {
-      background: #e74c3c; /* Merah maroon */
-      color: white;
-    }
-
-    .result-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .result-message {
-      font-size: 1rem;
-      font-weight: 400;
-    }
-
-    /* Pesan Error */
-    .error-message {
-      margin-top: 15px;
-      padding: 10px;
-      background: #f8d7da;
-      color: #721c24;
-      border: 1px solid #f5c6cb;
-      border-radius: 8px;
-      font-size: 0.9rem;
     }
 
     /* Footer */
@@ -150,8 +100,7 @@
     <img src="logo-sekolah.png" alt="Logo SMA Negeri 6 Sigi" class="logo">
 
     <h1>Selamat Datang di Pengumuman Kelulusan</h1>
-    <p>Assalamualaikum Warahmatullahi Wabarakatuh,</p>
-    <p>Kami ucapkan selamat kepada seluruh siswa/i yang telah menyelesaikan jenjang pendidikan selama 3 tahun di SMA Negeri 6 Sigi. Semoga ilmu yang didapatkan bermanfaat bagi masa depan.</p>
+    <p>Assalamualaikum Warahmatullahi Wabarakatuh, Kami ucapkan selamat kepada seluruh siswa/i yang telah menyelesaikan jenjang pendidikan di SMA Negeri 6 Sigi. Semoga ilmu yang didapatkan bermanfaat bagi masa depan.</p>
 
     <button onclick="showLoginPage()">LOGIN</button>
   </div>
