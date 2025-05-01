@@ -137,6 +137,20 @@
       font-size: 0.9rem;
     }
 
+    /* Link Kembali ke Halaman Login */
+    .back-to-login {
+      margin-top: 15px;
+      font-size: 1rem;
+      color: #007bff;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .back-to-login:hover {
+      color: #0056b3;
+    }
+
     /* Footer */
     .footer {
       position: absolute;
@@ -184,6 +198,9 @@
 
     <!-- Tombol Cek NISN Lainnya -->
     <button onclick="resetForm()">Cek NISN Lainnya</button>
+
+    <!-- Link Kembali ke Halaman Login -->
+    <div class="back-to-login" onclick="backToLogin()">← Kembali ke Halaman Login</div>
   </div>
 
   <!-- Footer -->
@@ -270,6 +287,12 @@
       // Kembali ke halaman input NISN
       document.getElementById("result-page").style.display = "none";
       document.getElementById("input-page").style.display = "block";
+    }
+
+    // Fungsi untuk kembali ke halaman login
+    function backToLogin() {
+      document.getElementById("result-page").style.display = "none";
+      document.getElementById("welcome-page").style.display = "block";
     }
   </script>
 </body>
