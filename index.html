@@ -63,6 +63,22 @@
       line-height: 1.4; /* Mengurangi jarak antar baris */
     }
 
+    /* Input NISN */
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 2px solid #007bff;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+      border-color: #0056b3;
+      outline: none;
+    }
+
     /* Tombol */
     button {
       background: #007bff;
@@ -80,6 +96,45 @@
     button:hover {
       background: #0056b3;
       transform: scale(1.05);
+    }
+
+    /* Kotak Hasil */
+    .result-container {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    .result-lulus {
+      background: #2ecc71; /* Hijau muda */
+      color: white;
+    }
+
+    .result-tidak-lulus {
+      background: #e74c3c; /* Merah maroon */
+      color: white;
+    }
+
+    .result-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .result-message {
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    /* Pesan Error */
+    .error-message {
+      margin-top: 15px;
+      padding: 10px;
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+      border-radius: 8px;
+      font-size: 0.9rem;
     }
 
     /* Footer */
