@@ -22,8 +22,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      overflow: hidden; /* Menghilangkan scroll jika perlu */
+      min-height: 100vh; /* Memastikan halaman dapat di-scroll */
     }
 
     .container {
@@ -161,6 +160,28 @@
       text-align: center;
       padding: 10px 0;
       font-size: 0.9rem;
+    }
+
+    /* Media Query untuk Perangkat Seluler */
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+      .logo {
+        width: 100px;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+      p {
+        font-size: 0.9rem;
+      }
+      input[type="text"] {
+        padding: 10px;
+      }
+      button {
+        padding: 10px 15px;
+      }
     }
   </style>
 </head>
