@@ -15,30 +15,23 @@
     body {
       font-family: Arial, sans-serif;
       line-height: 1.6;
-      background-color: #f4f4f9;
+      background: linear-gradient(to bottom, #0096ff, #00e676); /* Gradien biru ke hijau */
       color: #333;
-      text-align: center;
-      padding: 20px;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      color: #4CAF50;
-    }
-
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden; /* Menghilangkan scroll jika perlu */
     }
 
     .container {
-      max-width: 600px;
-      margin: 0 auto;
+      max-width: 400px;
+      width: 100%;
       background: white;
-      padding: 40px;
+      padding: 20px;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
     }
 
     /* Styling untuk logo */
@@ -47,83 +40,17 @@
       margin-bottom: 20px;
     }
 
-    /* Tombol Login */
-    .login-btn {
-      background: #4CAF50;
-      color: white;
-      padding: 15px 30px;
-      border: none;
-      border-radius: 5px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .login-btn:hover {
-      background: #45a049;
-    }
-
-    /* Input NISN */
     input[type="text"] {
       width: 100%;
       padding: 15px;
       margin-bottom: 20px;
-      border: 1px solid #ccc;
+      border: 2px solid #007bff;
       border-radius: 5px;
       font-size: 1rem;
     }
 
-    /* Tombol Cek Hasil */
     button {
-      background: #4CAF50;
-      color: white;
-      padding: 15px 30px;
-      border: none;
-      border-radius: 5px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    button:hover {
-      background: #45a049;
-    }
-
-    /* Hasil Kelulusan */
-    .result {
-      margin-top: 30px;
-      font-size: 1.5rem;
-    }
-
-    .name {
-      color: black; /* Nama siswa selalu hitam */
-    }
-
-    .status-lulus {
-      color: blue; /* Status "Lulus" berwarna biru */
-    }
-
-    .status-tidak-lulus {
-      color: red; /* Status "Tidak Lulus" berwarna merah */
-    }
-
-    /* Informasi Tambahan */
-    .info-lulus {
-      margin-top: 20px;
-      font-size: 1rem;
-      color: #555;
-    }
-
-    .info-tidak-lulus {
-      margin-top: 20px;
-      font-size: 1rem;
-      color: red; /* Pesan tambahan untuk tidak lulus berwarna merah */
-    }
-
-    /* Tombol Cek NISN Lainnya */
-    .reset-btn {
-      margin-top: 20px;
-      background: #4CAF50;
+      background: #007bff;
       color: white;
       padding: 10px 20px;
       border: none;
@@ -133,8 +60,44 @@
       transition: background 0.3s ease;
     }
 
-    .reset-btn:hover {
-      background: #45a049;
+    button:hover {
+      background: #0056b3;
+    }
+
+    .result-container {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 5px;
+    }
+
+    .result-lulus {
+      background: #2ecc71; /* Hijau muda */
+      color: white;
+    }
+
+    .result-tidak-lulus {
+      background: #e74c3c; /* Merah maroon */
+      color: white;
+    }
+
+    .result-title {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .result-message {
+      font-size: 1rem;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: #0096ff; /* Warna footer sesuai gradien */
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      font-size: 0.9rem;
     }
   </style>
 </head>
@@ -147,39 +110,38 @@
     <p>Assalamualaikum Warahmatullahi Wabarakatuh,</p>
     <p>Kami ucapkan selamat kepada seluruh siswa/i yang telah menyelesaikan jenjang pendidikan selama 3 tahun di SMA Negeri 6 Sigi. Semoga ilmu yang didapatkan bermanfaat bagi masa depan.</p>
 
-    <button class="login-btn" onclick="showLoginPage()">LOGIN</button>
+    <button onclick="showLoginPage()">LOGIN</button>
   </div>
 
   <!-- Halaman Input NISN -->
   <div id="input-page" class="container" style="display: none;">
     <img src="logo-sekolah.png" alt="Logo SMA Negeri 6 Sigi" class="logo">
 
-    <h1>Pengumuman Kelulusan</h1>
-    <p>Silakan masukkan NISN Anda untuk melihat hasil kelulusan:</p>
-
     <input type="text" id="nisnInput" placeholder="Masukkan NISN Anda" />
-    <button onclick="checkResult()">Cek Hasil</button>
-
-    <div id="error" class="error"></div>
+    <button onclick="checkResult()">Periksa Hasil</button>
   </div>
 
   <!-- Halaman Hasil Kelulusan -->
   <div id="result-page" class="container" style="display: none;">
     <img src="logo-sekolah.png" alt="Logo SMA Negeri 6 Sigi" class="logo">
 
-    <div id="result" class="result"></div>
-    <div id="additional-info"></div>
+    <div id="result" class="result-container"></div>
 
     <!-- Tombol Cek NISN Lainnya -->
-    <button class="reset-btn" onclick="resetForm()">Cek NISN Lainnya</button>
+    <button onclick="resetForm()">Cek NISN Lainnya</button>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    © 2024 SMA Negeri 6 Sigi
   </div>
 
   <script>
     // Data dummy untuk hasil kelulusan
     const students = {
       "1234567890": { name: "Andi", status: "Lulus" },
-      "0987654321": { name: "Budi", status: "Lulus" },
-      "1122334455": { name: "Citra", status: "Tidak Lulus" },
+      "0987654321": { name: "Budi", status: "Tidak Lulus" },
+      "1122334455": { name: "Citra", status: "Lulus" },
     };
 
     // Fungsi untuk menampilkan halaman login
@@ -192,16 +154,12 @@
     function checkResult() {
       const nisn = document.getElementById("nisnInput").value.trim();
       const resultDiv = document.getElementById("result");
-      const errorDiv = document.getElementById("error");
-      const infoDiv = document.getElementById("additional-info");
 
       // Reset pesan sebelumnya
       resultDiv.innerHTML = ""; // Gunakan innerHTML untuk memungkinkan penambahan elemen baru
-      errorDiv.textContent = "";
-      infoDiv.innerHTML = "";
 
       if (nisn === "") {
-        errorDiv.textContent = "NISN tidak boleh kosong!";
+        alert("NISN tidak boleh kosong!");
         return;
       }
 
@@ -213,29 +171,29 @@
         document.getElementById("result-page").style.display = "block";
 
         // Tampilkan nama dan status secara terpisah
-        resultDiv.innerHTML = `
-          <p class="name">Nama: ${student.name}</p>
-          <p class="${student.status === 'Lulus' ? 'status-lulus' : 'status-tidak-lulus'}">
-            Status: ${student.status}
-          </p>
-        `;
+        let message = "";
+        let className = "";
 
-        // Tambahkan informasi tambahan
         if (student.status === "Lulus") {
-          infoDiv.innerHTML = `
-            <p class="info-lulus">
-              Silahkan ambil Surat Keterangan Lulus di Ruang Tata Usaha SMA Negeri 6 Sigi dengan berpakaian Rapi dan Sopan.
-            </p>
+          className = "result-lulus";
+          message = `
+            <p class="result-title">SELAMAT, ${student.name}!</p>
+            <p class="result-message">Anda dinyatakan <strong>LULUS</strong>.</p>
+            <p class="result-message">Silahkan ambil Surat Keterangan Lulus di Ruang Tata Usaha SMA Negeri 6 Sigi dengan berpakaian rapi dan sopan.</p>
           `;
         } else {
-          infoDiv.innerHTML = `
-            <p class="info-tidak-lulus">
-              Segera menemui pihak sekolah untuk keterangan lebih lanjut.
-            </p>
+          className = "result-tidak-lulus";
+          message = `
+            <p class="result-title">MAAF, ${student.name}</p>
+            <p class="result-message">Anda dinyatakan <strong>TIDAK LULUS</strong>.</p>
+            <p class="result-message">Silahkan hubungi guru pembimbing untuk informasi lebih lanjut.</p>
           `;
         }
+
+        // Tampilkan hasil
+        resultDiv.innerHTML = `<div class="${className}">${message}</div>`;
       } else {
-        errorDiv.textContent = "NISN tidak ditemukan. Silakan coba lagi.";
+        alert("NISN tidak ditemukan. Silakan coba lagi.");
       }
     }
 
@@ -243,14 +201,10 @@
     function resetForm() {
       const nisnInput = document.getElementById("nisnInput");
       const resultDiv = document.getElementById("result");
-      const errorDiv = document.getElementById("error");
-      const infoDiv = document.getElementById("additional-info");
 
       // Kosongkan input NISN dan hasil kelulusan
       nisnInput.value = "";
       resultDiv.innerHTML = "";
-      errorDiv.textContent = "";
-      infoDiv.innerHTML = "";
 
       // Kembali ke halaman input NISN
       document.getElementById("result-page").style.display = "none";
