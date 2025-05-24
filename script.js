@@ -67,22 +67,19 @@ function checkResult() {
     let message = "";
     let className = "";
 
-    if (student.lulus) { // Check the 'lulus' boolean property
+    // Ensure student.name is accessed, and student.status is used for Lulus/Tidak Lulus
+    if (student.status === "Lulus") { 
       className = "result-lulus";
       message = `
-        <p class="result-title">SELAMAT, ${student.nama.toUpperCase()}!</p>
+        <p class="result-title">SELAMAT, ${student.name.toUpperCase()}!</p>
         <p class="result-message">Anda dinyatakan <strong>LULUS</strong>.</p>
-        <p class="result-message">Tanggal Lahir: ${student.tanggal_lahir}</p>
-        <p class="result-message">Nilai Rata-rata: ${student.nilai_rata_rata}</p>
         <p class="result-message">Silahkan ambil Surat Keterangan Lulus di Ruang Tata Usaha SMA Negeri 6 Sigi dengan berpakaian rapi dan sopan.</p>
       `;
     } else {
       className = "result-tidak-lulus";
       message = `
-        <p class="result-title">MAAF, ${student.nama.toUpperCase()}</p>
+        <p class="result-title">MAAF, ${student.name.toUpperCase()}</p>
         <p class="result-message">Anda dinyatakan <strong>TIDAK LULUS</strong>.</p>
-        <p class="result-message">Tanggal Lahir: ${student.tanggal_lahir}</p>
-        <p class="result-message">Nilai Rata-rata: ${student.nilai_rata_rata}</p>
         <p class="result-message">Silahkan hubungi guru pembimbing untuk informasi lebih lanjut.</p>
       `;
     }
