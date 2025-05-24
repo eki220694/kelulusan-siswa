@@ -1,0 +1,176 @@
+/* Reset default margin dan padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  line-height: 1.6;
+  background: linear-gradient(to bottom, #0096ff, #00e676); /* Gradien biru ke hijau */
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Memastikan halaman dapat di-scroll */
+}
+
+.container {
+  max-width: 400px;
+  width: 100%;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+}
+
+/* Styling untuk logo */
+.logo {
+  width: 120px; /* Ukuran logo lebih kecil */
+  margin-bottom: 20px;
+}
+
+/* Judul */
+h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #007bff;
+  margin-bottom: 15px;
+}
+
+/* Subjudul */
+p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+  max-width: 350px; /* Membatasi lebar teks agar tidak terlalu panjang */
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  line-height: 1.4; /* Mengurangi jarak antar baris */
+}
+
+/* Input NISN */
+input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+  border-color: #0056b3;
+  outline: none;
+}
+
+/* Tombol */
+button {
+  background: #007bff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  margin-bottom: 20px; /* Menambahkan jarak ke bawah */
+}
+
+button:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Kotak Hasil */
+.result-container {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.result-lulus {
+  background: #2ecc71; /* Hijau muda */
+  color: white;
+}
+
+.result-tidak-lulus {
+  background: #e74c3c; /* Merah maroon */
+  color: white;
+}
+
+.result-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.result-message {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+/* Pesan Error */
+.error-message {
+  margin-top: 15px;
+  padding: 10px;
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+/* Link Kembali ke Halaman Login */
+.back-to-login {
+  margin-top: 15px;
+  font-size: 1rem;
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.back-to-login:hover {
+  color: #0056b3;
+}
+
+/* Footer */
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: #0096ff; /* Warna footer sesuai gradien */
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.9rem;
+}
+
+/* Media Query untuk Perangkat Seluler */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+  .logo {
+    width: 100px;
+  }
+  h1 {
+    font-size: 1.6rem;
+  }
+  p {
+    font-size: 0.9rem;
+  }
+  input[type="text"] {
+    padding: 10px;
+  }
+  button {
+    padding: 10px 15px;
+  }
+}
